@@ -1,0 +1,39 @@
+/**
+ * My commodity trading network
+ */
+
+namespace org.acme.biznet
+enum IdentityType {
+  o INDI
+  o ORG
+}
+
+enum VerifyType {
+  o Verified
+  o Unverified
+  o Wrong
+}
+
+asset Identity_u identified by idenId {
+    o String idenId
+    o String name
+    o IdentityType type
+    o String email
+}
+
+asset Tracks identified by trackId {
+    o String trackId
+    o String jobTitle
+    o String description
+    o String owner_id
+    o String verifier
+    o String verify_remarks optional
+    o VerifyType isVerified
+    
+}
+
+transaction VerifyContract {
+    --> Tracks track
+    o String verify_remarks
+    o VerifyType isVerified
+}
